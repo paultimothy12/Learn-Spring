@@ -55,7 +55,6 @@ public class DemoController {
     @PostMapping(Mappings.REDIRECT)
     public String addData(@RequestParam Integer number, @RequestParam String name) {
         databaseList.add(new Database(number, name));
-        System.out.println(databaseList.get(0));
         return ViewNames.REDIRECT_VIEW;
     }
 

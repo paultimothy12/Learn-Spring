@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<div align="center">
+    <h1 th:text="${UserName}">replacing text</h1>
+    <h1 th:text="${Message}">replacing text</h1>
+
+    <table border="1" cellpadding="5">                  <!--#1-->
+        <caption><h2>String Values</h2></caption>
+        <tr>
+            <th>content</th>
+        </tr>
+
+        <tr th:each="Data: ${demoController.getStrings()}">     <!--#2-->
+            <td th:text="${Data}" />
+        </tr>
+    </table>
+
+    <a th:text="Link" href="https://github.com/paultimothy12">Click here</a>    <!--#3-->
+    <a th:text="RedirectPage" th:href="redirect">replacing text</a>     <!--#4-->
+</div>
+</body>
+</html>
