@@ -4,6 +4,7 @@ import com.timothy.entities.TestDataRepository;
 import com.timothy.utils.AttributeNames;
 import com.timothy.utils.Mappings;
 import com.timothy.utils.ViewNames;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class DemoController {
 
     TestDataRepository testDataRepository;
@@ -72,19 +74,31 @@ public class DemoController {
 
     @PostMapping(Mappings.ADD_DATA)
     public String addData(@RequestParam Integer number, @RequestParam String name) {
-        testDataRepository.save(new TestData(number,name));
+        if(!testDataRepository.existsById(number)){
+            testDataRepository.save(new TestData(number,name));
+        }else{
+            log.info("entry with id = {} already exist",number);
+        }
         return ViewNames.ADD_DATA_VIEW;
     }
     @PostMapping(Mappings.DELETE_DATA)
     public String deleteData(@RequestParam Integer number) {
-        testDataRepository.deleteById(number);
+        if(testDataRepository.existsById(number)) {
+            testDataRepository.deleteById(number);
+        }else{
+            log.info("entry with id = {} doesn't exist",number);
+        }
         return ViewNames.DELETE_DATA_VIEW;
     }
     @PostMapping(Mappings.UPDATE_DATA)
     public String updateData(@RequestParam Integer number,@RequestParam String name) {
-        TestData testData = testDataRepository.findById(number).get();
-        testData.setName(name);
-        testDataRepository.save(testData);
+        if (testDataRepository.existsById(number)) {
+            TestData testData = testDataRepository.findById(number).get();
+            testData.setName(name);
+            testDataRepository.save(testData);
+        }else{
+            log.info("entry doesn't exist - try updating existing entry");
+        }
         return ViewNames.UPDATE_DATA_VIEW;
     }
 
