@@ -14,5 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController(Mappings.WELCOME).setViewName(ViewNames.WELCOME_VIEW);
         registry.addViewController(Mappings.ADD_DATA).setViewName(ViewNames.ADD_DATA_VIEW);
         registry.addViewController(Mappings.VIEW_DATA).setViewName(ViewNames.VIEW_DATA_VIEW);
+        registry.addViewController(Mappings.DELETE_DATA).setViewName(ViewNames.DELETE_DATA_VIEW);
+        registry.addViewController(Mappings.UPDATE_DATA).setViewName(ViewNames.UPDATE_DATA_VIEW);
     }
 }

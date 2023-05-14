@@ -47,21 +47,45 @@ public class DemoController {
     }
 
 
+
+
     @GetMapping(Mappings.ADD_DATA)
-    public String redirect() {
+    public String addData() {
         return ViewNames.ADD_DATA_VIEW;
     }
 
     @GetMapping(Mappings.VIEW_DATA)
     public String viewData(Model model) {
-        model.addAttribute("testDatabaseList",testDataRepository.findAll());
+        model.addAttribute("getDatabaseList",testDataRepository.findAll());
         return ViewNames.VIEW_DATA_VIEW;
     }
 
+    @GetMapping(Mappings.DELETE_DATA)
+    public String deleteData(){
+        return ViewNames.DELETE_DATA_VIEW;
+    }
+
+    @GetMapping(Mappings.UPDATE_DATA)
+    public String updateData(){
+        return ViewNames.UPDATE_DATA_VIEW;
+    }
 
     @PostMapping(Mappings.ADD_DATA)
     public String addData(@RequestParam Integer number, @RequestParam String name) {
         testDataRepository.save(new TestData(number,name));
         return ViewNames.ADD_DATA_VIEW;
     }
+    @PostMapping(Mappings.DELETE_DATA)
+    public String deleteData(@RequestParam Integer number) {
+        testDataRepository.deleteById(number);
+        return ViewNames.DELETE_DATA_VIEW;
+    }
+    @PostMapping(Mappings.UPDATE_DATA)
+    public String updateData(@RequestParam Integer number,@RequestParam String name) {
+        TestData testData = testDataRepository.findById(number).get();
+        testData.setName(name);
+        testDataRepository.save(testData);
+        return ViewNames.UPDATE_DATA_VIEW;
+    }
+
 }

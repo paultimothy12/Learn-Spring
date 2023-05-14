@@ -2,25 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>ADD PAGE</title>
+    <title>Delete Data</title>
 </head>
 <body>
 <div align="center">
 
-    <h3>ADD DATA</h3>
+    <h3>DELETE DATA</h3>
     <br>
-    <form action="redirect" method="post">
+    <form action="delete-data" method="post">
         <label for="numberIN">Enter Serial Number</label>
         <input id="numberIN" type="number" name="number">
-
-        <label for="nameIN">Enter Name</label>
-        <input id="nameIN" type="text" name="name">
 
         <input type="submit" value="Submit">
     </form>
     <br>
 
     <a th:text="viewData" th:href="view-data">replacing text</a>
+    <a th:text="addData" th:href="add-data">replacing text</a>
 </div>
 </body>
 </html>

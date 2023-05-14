@@ -5,4 +5,6 @@ public final class Mappings {
     public static final String WELCOME = "";
     public static final String ADD_DATA ="add-data";
     public static final String VIEW_DATA ="view-data";
+    public static final String DELETE_DATA ="delete-data";
+    public static final String UPDATE_DATA ="update-data";
 }

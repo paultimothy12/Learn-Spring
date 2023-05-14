@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+  <meta charset="UTF-8">
+  <title>View Data</title>
+</head>
+<body>
+<div align="center">
+
+  <table border="1" cellpadding="5">
+    <caption><h2>Database Values</h2></caption>
+    <tr>
+      <th>number</th>
+      <th>name</th>
+    </tr>
+
+    <tr th:each="Data : ${getDatabaseList}">
+      <td th:text="${Data.getNumber()}" />
+      <td th:text="${Data.getName()}" />
+    </tr>
+  </table>
+
+  <a th:text="addData" th:href="add-data">replacing text</a>
+  <a th:text="deleteData" th:href="delete-data">replacing text</a>
+  <a th:text="updateData" th:href="update-data">replacing text</a>
+</div>
+</body>
+</html>
