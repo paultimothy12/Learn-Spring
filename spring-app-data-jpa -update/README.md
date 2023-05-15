@@ -449,6 +449,12 @@ http://localhost:8080/?UserName=Value   (No " " or ' ')
             //JpaRepository<Entity className, Id fieldType>
         }
 
+Other Repositories:
+    <li>CrudRepository - Covers basic methods(CRUD)
+    <li>PagingAndSortingRepository - only findAll method(Read) - sort and paging
+    <li>JpaRepository - Covers many methods, built above CrudRepository & PagingAndSortingRepository
+
+
 ### 11.Remove the collection based data holders and add Repository methods:
 
 **DemoController.java:**
