@@ -56,9 +56,6 @@ public class DemoController {
         customer.setCredit(customer.getCredit()- order.getTotalBill());
         customerRepo.save(customer);
 
-
-
-
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(order.getCustomerId())

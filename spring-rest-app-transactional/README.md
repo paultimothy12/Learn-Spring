@@ -8,9 +8,9 @@
         public ResponseEntity<String> billCheckout(@RequestBody OrderEN order){
             orderRepo.save(order);                                                      //#1
     
-            CustomerEN customer = customerRepo.findById(order.getCustomerId()).get();   //#2
+            CustomerEN customer = customerRepo.findById(order.getCustomerId()).get();   
             customer.setCredit(customer.getCredit()- order.getTotalBill());
-            customerRepo.save(customer);
+            customerRepo.save(customer);                                                //#2
     
     
     
@@ -25,17 +25,9 @@
 
 ### CASE 1:(method is annotated with @Transactional)
 
-#1 : A order object is saved to ORDER_DB(customerId,totalBill)<br>
-#2 : Retrieving a customer Object from DB,change the credit in CUSTOMER_DB and save the Object.
+#1 and #2 DB calls will be on wait till the control reaches the end of the method and then the transaction will be successful.
 
 ### CASE 2:(method is annotated with @Transactional)
 
-#1 : A order object is saved to ORDER_DB(customerId,totalBill)<br>
 #2 : Retrieving a customer Object from DB but **customer entry not present**, throws an Exception.
-The previous transaction(#1) will be reverted.
-
-### CASE 3: **WORST CASE** - (method is **not annotated** with @Transactional)
-
-#1 : A order object is saved to ORDER_DB(customerId,totalBill)<br>
-#2 : Retrieving a customer Object from DB but **customer entry not present**, throws an Exception.
-The previous transaction(#1) will **not** be reverted.
+<br>All DB calls will be unsuccessful.
