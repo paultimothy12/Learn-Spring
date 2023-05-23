@@ -12,4 +12,6 @@ Go to https://start.spring.io/
     <li>spring-app-data-jpa : removing collection variable which holds data, added spring-data-jpa with H2 in-memory database
     <li>spring-app-data-jpa-update : other CRUD controller methods added
     <li>spring-rest-app : basic rest app
+    <li>spring-rest-app-transactional : adding @Transactional
+    <li>spring-rest-app-transactional-MySQL Docker : removing h2 and adding MySQL Docker
 </ol>
